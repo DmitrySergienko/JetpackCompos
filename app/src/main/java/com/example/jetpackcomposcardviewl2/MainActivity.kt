@@ -5,9 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,7 +28,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column() {
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                NewCardView("Name", "Actor")
+                NewCardView("Name", "Actor")
+                NewCardView("Name", "Actor")
+                NewCardView("Name", "Actor")
+                NewCardView("Name", "Actor")
                 NewCardView("Name", "Actor")
                 NewCardView("Name", "Actor")
                 NewCardView("Name", "Actor")
@@ -52,7 +55,7 @@ fun NewCardView(name: String, prof: String) {
             .padding(10.dp)
             .offset(30.dp)
             .clickable {
-                       Log.d("Test","Clickable test")
+                Log.d("Test", "Clickable test")
 
             },
         shape = RoundedCornerShape(15.dp),
