@@ -46,7 +46,8 @@ fun NewCardView(name: String, prof: String) {
         modifier = Modifier
 
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(10.dp)
+            .offset(30.dp),
         shape = RoundedCornerShape(15.dp),
         elevation = 5.dp
     ) {
