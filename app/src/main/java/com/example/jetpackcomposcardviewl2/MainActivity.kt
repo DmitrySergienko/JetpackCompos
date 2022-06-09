@@ -1,92 +1,86 @@
 package com.example.jetpackcomposcardviewl2
 
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
+import android.util.SizeF
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ButtonColors
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.VerticalAlignmentLine
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
-                NewCardView("Name", "Actor")
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                cyrcleItem()
             }
 
         }
     }
 }
+
 
 @Composable
-fun NewCardView(name: String, prof: String) {
-//Task to do counter
-//the var counter can changes it's state, so need to remember value
-    var counter = remember {
-        mutableStateOf(0)
-    }
-    Card(
+private fun cyrcleItem() {
+    var counter = remember { mutableStateOf(0) }
+    var myColor = remember { mutableStateOf(Color.Cyan) }
+    val cycleSize = remember {mutableStateOf(100)}
+
+    Box(
         modifier = Modifier
-
-            .fillMaxWidth()
-            .padding(10.dp)
-            .offset(30.dp)
+            .size(cycleSize.value.dp)
             .clickable {
-                Log.d("VVV", "Clickable test")
-                counter.value++
-            }
-            .pointerInput(Unit) {
-                detectDragGesturesAfterLongPress { change, dragAmount ->
-                    Log.d("VVV", "$dragAmount")
+                when (++counter.value) {
+                    3 -> myColor.value = Color.Gray
+                    6 -> myColor.value = Color.Red
+                    10 -> myColor.value = Color.LightGray
+                    12 -> cycleSize.value = 120
+                    14 -> cycleSize.value = 140
+                    16 -> cycleSize.value = 160
+
+
                 }
-            },
-        shape = RoundedCornerShape(15.dp),
-        elevation = 5.dp
+
+            }
+            .background(myColor.value, shape = CircleShape),
+        contentAlignment = Alignment.Center
+
     ) {
-        Box() {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_pic_currency_back),
-                    contentDescription = "image",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(64.dp)
-                        .clip(CircleShape)
-                        .padding(5.dp)
-                )
-                Column(modifier = Modifier.padding(start = 10.dp)) {
-                    Text(text = counter.value.toString())
-                    Text(text = prof)
-                }
-            }
-        }
+
+        Text(text = counter.value.toString(),
+        style = TextStyle(color = Color.Blue, fontSize = 40.sp)
+        )
+
+
     }
-
-
 }
+
+
+
+
