@@ -28,7 +28,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Column() {
-
                 NewCardView("Name", "Actor")
                 NewCardView("Name", "Actor")
                 NewCardView("Name", "Actor")
