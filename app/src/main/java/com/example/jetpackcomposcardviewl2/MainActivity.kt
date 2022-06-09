@@ -9,6 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ButtonColors
@@ -33,53 +34,58 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Box(
+
+            LazyColumn(
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
+                    .fillMaxSize()
             ) {
-                cyrcleItem()
+                items(count = 100) {
+                    testObject()
+                }
             }
 
         }
     }
 }
 
-
 @Composable
-private fun cyrcleItem() {
-    var counter = remember { mutableStateOf(0) }
-    var myColor = remember { mutableStateOf(Color.Cyan) }
-    val cycleSize = remember {mutableStateOf(100)}
-
-    Box(
+fun testObject() {
+    Card(
         modifier = Modifier
-            .size(cycleSize.value.dp)
-            .clickable {
-                when (++counter.value) {
-                    3 -> myColor.value = Color.Gray
-                    6 -> myColor.value = Color.Red
-                    10 -> myColor.value = Color.LightGray
-                    12 -> cycleSize.value = 120
-                    14 -> cycleSize.value = 140
-                    16 -> cycleSize.value = 160
-
-
-                }
-
-            }
-            .background(myColor.value, shape = CircleShape),
-        contentAlignment = Alignment.Center
+            .fillMaxWidth()
+            .padding(10.dp),
+        shape = RoundedCornerShape(15.dp),
+        elevation = 5.dp
 
     ) {
+        Box() {
+            Row(verticalAlignment = Alignment.CenterVertically) {
 
-        Text(text = counter.value.toString(),
-        style = TextStyle(color = Color.Blue, fontSize = 40.sp)
-        )
+                Column() {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_pic_currency_back),
+                        contentDescription = "image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(64.dp)
+                            .clip(CircleShape)
+                            .padding(5.dp)
+                    )
+                }
+                Column(modifier = Modifier.padding(10.dp)) {
+                    Text(text = "Text")
+                    Text(text = "AddText")
+                }
+            }
+        }
 
 
     }
+
 }
+
+
 
 
 
