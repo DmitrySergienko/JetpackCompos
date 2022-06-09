@@ -10,6 +10,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ButtonColors
@@ -38,10 +39,25 @@ class MainActivity : ComponentActivity() {
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
+
                     .fillMaxSize()
             ) {
-                items(count = 100) {
-                    testObject()
+                itemsIndexed(
+                    listOf(
+                        "something1",
+                        "something3",
+                        "something1",
+                        "something4",
+                        "something1",
+                        "something1",
+                        "something1",
+                        "something1",
+                        "something1",
+                        "something1",
+                        "something3")
+                )
+                { index, item ->
+                    testObject(name = item, name2 = item)
                 }
             }
 
@@ -50,7 +66,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun testObject() {
+fun testObject(name: String, name2: String) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -74,8 +90,8 @@ fun testObject() {
                     )
                 }
                 Column(modifier = Modifier.padding(10.dp)) {
-                    Text(text = "Text")
-                    Text(text = "AddText")
+                    Text(text = name)
+                    Text(text = name2)
                 }
             }
         }
