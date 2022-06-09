@@ -10,6 +10,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -36,8 +37,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            LazyColumn(
-                horizontalAlignment = Alignment.CenterHorizontally,
+            LazyRow(
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
 
                     .fillMaxSize()
