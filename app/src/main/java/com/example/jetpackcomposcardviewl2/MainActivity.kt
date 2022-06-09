@@ -14,7 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,7 +46,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun NewCardView(name: String, prof: String) {
-
+//Task to do counter
+//the var counter can changes it's state, so need to remember value
+    var counter = remember {
+        mutableStateOf(0)
+    }
     Card(
         modifier = Modifier
 
@@ -55,7 +59,7 @@ fun NewCardView(name: String, prof: String) {
             .offset(30.dp)
             .clickable {
                 Log.d("VVV", "Clickable test")
-
+                counter.value++
             }
             .pointerInput(Unit) {
                 detectDragGesturesAfterLongPress { change, dragAmount ->
@@ -77,7 +81,7 @@ fun NewCardView(name: String, prof: String) {
                         .padding(5.dp)
                 )
                 Column(modifier = Modifier.padding(start = 10.dp)) {
-                    Text(text = name)
+                    Text(text = counter.value.toString())
                     Text(text = prof)
                 }
             }
