@@ -1,10 +1,13 @@
 package com.example.jetpackcomposcardviewl2
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,7 +50,11 @@ fun NewCardView(name: String, prof: String) {
 
             .fillMaxWidth()
             .padding(10.dp)
-            .offset(30.dp),
+            .offset(30.dp)
+            .clickable {
+                       Log.d("Test","Clickable test")
+
+            },
         shape = RoundedCornerShape(15.dp),
         elevation = 5.dp
     ) {
