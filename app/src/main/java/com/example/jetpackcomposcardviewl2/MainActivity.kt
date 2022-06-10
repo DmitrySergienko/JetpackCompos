@@ -1,36 +1,28 @@
 package com.example.jetpackcomposcardviewl2
 
 import android.os.Bundle
-import android.text.Layout
-import android.util.Log
-import android.util.SizeF
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.*
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.VerticalAlignmentLine
-import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.jetpackcomposcardviewl2.model.LocalData
+import com.example.jetpackcomposcardviewl2.ui.compos.NewCardObject
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,28 +30,28 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             LazyRow(
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.Top,
                 modifier = Modifier
-
-                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .background(Color.LightGray)
+                    .padding(5.dp)
+                    .alpha(0.9f)
             ) {
                 itemsIndexed(
                     listOf(
-                        "something1",
-                        "something3",
-                        "something1",
-                        "something4",
-                        "something1",
-                        "something1",
-                        "something1",
-                        "something1",
-                        "something1",
-                        "something1",
-                        "something3")
-                )
-                { index, item ->
-                    testObject(name = item, name2 = item)
+                        LocalData(R.drawable.ic_pic_currency_back,"AnyName"),
+                        LocalData(R.drawable.ic_pic_currency_back,"AnyName"),
+                        LocalData(R.drawable.ic_pic_currency_back,"AnyName"),
+                        LocalData(R.drawable.ic_pic_currency_back,"AnyName"),
+                        LocalData(R.drawable.ic_pic_currency_back,"AnyName"),
+                        LocalData(R.drawable.ic_pic_currency_back,"AnyName"),
+                        LocalData(R.drawable.ic_pic_currency_back,"AnyName"),
+                    )
+                ) {_, item->
+                    NewCardObject(item =item)
                 }
+
+
             }
 
         }
